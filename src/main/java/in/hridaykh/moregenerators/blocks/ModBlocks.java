@@ -21,17 +21,14 @@ public class ModBlocks {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MoreGenerators.MOD_ID);
 
 	public static final DeferredBlock<Block> BISMUTH_BLOCK = registerBlockWithItem("bismuth_block",
-			() -> new Block(Block.Properties.of().strength(8f, 600).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+			() -> new Block(Block.Properties.of().strength(5f, 6).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
 	public static final DeferredBlock<Block> BISMUTH_ORE = registerBlockWithItem("bismuth_ore", () -> new DropExperienceBlock(UniformInt.of(40, 80),
-			Block.Properties.of().strength(1f, 20).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+			Block.Properties.of().strength(3f, 3).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
-	private static <T extends Block> DeferredBlock<T> registerBlockWithItem(String name, Supplier<T> blockSupplier) {
-		DeferredBlock<T> deferredBlock = BLOCKS.register(name, blockSupplier);
-		ModItems.ITEMS.register(name, () -> new BlockItem(deferredBlock.get(), new Item.Properties()));
-
-		return deferredBlock;
-	}
+	public static final DeferredBlock<Block> BISMUTH_DEEPSLATE_ORE = registerBlockWithItem("bismuth_deepslate_ore",
+			() -> new DropExperienceBlock(UniformInt.of(40, 80),
+					Block.Properties.of().strength(4.5f, 4).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);
@@ -47,4 +44,9 @@ public class ModBlocks {
 		}
 	}
 
+	private static <T extends Block> DeferredBlock<T> registerBlockWithItem(String name, Supplier<T> blockSupplier) {
+		DeferredBlock<T> deferredBlock = BLOCKS.register(name, blockSupplier);
+		ModItems.ITEMS.register(name, () -> new BlockItem(deferredBlock.get(), new Item.Properties()));
+		return deferredBlock;
+	}
 }

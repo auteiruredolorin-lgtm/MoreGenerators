@@ -3,6 +3,7 @@
 	"item.moregenerators.raw_bismuth": "Raw Bismuth",
 	"block.moregenerators.bismuth_block": "Bismuth Block",
 	"block.moregenerators.bismuth_ore": "Bismuth Ore",
+	"block.moregenerators.bismuth_deepslate_ore": "Bismuth Deepslate Ore",
 	"creativetab.moregenerators.more_generators_tab": "More Generators",
 	"creativetab.moregenerators.more_generators_blocks_tab": "More Generators Blocks"
 }
