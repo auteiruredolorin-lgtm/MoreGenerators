@@ -2,7 +2,9 @@ package in.hridaykh.moregenerators.blocks;
 
 import java.util.List;
 
+import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.items.ModItems;
+import in.hridaykh.moregenerators.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -13,7 +15,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -36,11 +37,16 @@ public class BismuthMagicBlock extends Block {
 		if (!(entity instanceof ItemEntity itemEntity))
 			return;
 
-		if (itemEntity.getItem().getItem() != ModItems.RAW_BISMUTH.get())
+		if (!isValidItem(itemEntity.getItem()))
 			return;
-
+		MoreGenerators.LOGGER.debug("Bismuth Magic Block activated by item {}", itemEntity.getItem());
 		itemEntity.setItem(new ItemStack(ModItems.BISMUTH.get(), itemEntity.getItem().getCount()));
 		level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.BLOCKS);
+	}
+
+	private boolean isValidItem(ItemStack itemStack) {
+		MoreGenerators.LOGGER.debug("Checking if item {} is valid for Bismuth Magic Block", itemStack);
+		return itemStack.is(ModTags.Items.BISMUTH_ORES);
 	}
 
 	@Override
