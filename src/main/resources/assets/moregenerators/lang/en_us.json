@@ -1,9 +1,20 @@
 {
 	"item.moregenerators.bismuth": "Bismuth",
 	"item.moregenerators.raw_bismuth": "Raw Bismuth",
+	"item.moregenerators.chiesl": "Chiesl",
+	"item.moregenerators.radish": "Radish",
+	"item.moregenerators.frostfire_ice": "FrostFire Ice",
+	"item.moregenerators.starlight_ashes": "Starlight Ashes",
+
 	"block.moregenerators.bismuth_block": "Bismuth Block",
 	"block.moregenerators.bismuth_ore": "Bismuth Ore",
 	"block.moregenerators.bismuth_deepslate_ore": "Bismuth Deepslate Ore",
-	"creativetab.moregenerators.more_generators_tab": "More Generators",
-	"creativetab.moregenerators.more_generators_blocks_tab": "More Generators Blocks"
+
+	"creativetab.moregenerators.more_generators_items": "More Generators Items",
+	"creativetab.moregenerators.more_generators_blocks": "More Generators Blocks",
+
+	"tooltip.moregenerators.bismuth_magic_block": "f\rr\n\ra\r\n§8f§r",
+	"tooltip.moregenerators.chiesl": "shift pls",
+	"tooltip.moregenerators.chiesl.shift_down": "try on grass, dirt, stone, end stone, deepslate, bismuth ores",
+	"tooltip.moregenerators.radish": "gives speed 4"
 }
