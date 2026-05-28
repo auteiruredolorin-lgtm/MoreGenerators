@@ -6,7 +6,6 @@ import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.items.custom.ChieslItem;
 import in.hridaykh.moregenerators.items.custom.FuelItem;
 import in.hridaykh.moregenerators.tabs.CreativeTabs;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
