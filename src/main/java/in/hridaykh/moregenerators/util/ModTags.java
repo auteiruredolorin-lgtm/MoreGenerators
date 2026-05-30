@@ -17,7 +17,7 @@ public class ModTags {
 
 	public static class Items {
 
-		public static final TagKey<Item> BISMUTH_ORES = createTag("ores_bismuth");
+		public static final TagKey<Item> RAW_BISMUTH = createTag("raw_bismuth");
 
 		private static TagKey<Item> createTag(String name) {
 			return ItemTags.create(ResourceLocation.fromNamespaceAndPath(MoreGenerators.MOD_ID, name));

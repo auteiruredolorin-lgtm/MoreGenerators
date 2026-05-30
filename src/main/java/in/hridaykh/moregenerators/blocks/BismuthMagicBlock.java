@@ -46,7 +46,7 @@ public class BismuthMagicBlock extends Block {
 
 	private boolean isValidItem(ItemStack itemStack) {
 		MoreGenerators.LOGGER.debug("Checking if item {} is valid for Bismuth Magic Block", itemStack);
-		return itemStack.is(ModTags.Items.BISMUTH_ORES);
+		return itemStack.is(ModTags.Items.RAW_BISMUTH);
 	}
 
 	@Override
