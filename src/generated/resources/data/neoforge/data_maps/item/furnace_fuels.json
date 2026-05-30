@@ -1,0 +1,10 @@
+{
+  "values": {
+    "moregenerators:frostfire_ice": {
+      "burn_time": 1200
+    },
+    "moregenerators:starlight_ashes": {
+      "burn_time": 120000
+    }
+  }
+}
