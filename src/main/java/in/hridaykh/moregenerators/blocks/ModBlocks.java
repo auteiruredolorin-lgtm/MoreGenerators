@@ -65,7 +65,7 @@ public class ModBlocks {
 			() -> new PressurePlateBlock(BlockSetType.IRON,
 					BlockBehaviour.Properties.of().strength(5f, 6).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
-	public static final DeferredBlock<ButtonBlock> BISMUTH_BUTTON = registerBlockWithItem("bismuth_button", () -> new ButtonBlock(BlockSetType.IRON, 1,
+	public static final DeferredBlock<ButtonBlock> BISMUTH_BUTTON = registerBlockWithItem("bismuth_button", () -> new ButtonBlock(BlockSetType.IRON, 3,
 			BlockBehaviour.Properties.of().strength(5f, 6).requiresCorrectToolForDrops().sound(SoundType.METAL).noCollission()));
 
 	public static final DeferredBlock<DoorBlock> BISMUTH_DOOR = registerBlockWithItem("bismuth_door",
@@ -78,6 +78,17 @@ public class ModBlocks {
 		CreativeTabs.addItemToTab(BISMUTH_BLOCK, CreativeTabs.CREATIVE_TABS[1]);
 		CreativeTabs.addItemToTab(BISMUTH_ORE, CreativeTabs.CREATIVE_TABS[1]);
 		CreativeTabs.addItemToTab(BISMUTH_DEEPSLATE_ORE, CreativeTabs.CREATIVE_TABS[1]);
+
+
+		CreativeTabs.addItemToTab(BISMUTH_STAIRS, CreativeTabs.CREATIVE_TABS[1]);
+		CreativeTabs.addItemToTab(BISMUTH_SLAB, CreativeTabs.CREATIVE_TABS[1]);
+		CreativeTabs.addItemToTab(BISMUTH_FENCE, CreativeTabs.CREATIVE_TABS[1]);
+		CreativeTabs.addItemToTab(BISMUTH_FENCE_GATE, CreativeTabs.CREATIVE_TABS[1]);
+		CreativeTabs.addItemToTab(BISMUTH_WALL, CreativeTabs.CREATIVE_TABS[1]);
+		CreativeTabs.addItemToTab(BISMUTH_PRESSURE_PLATE, CreativeTabs.CREATIVE_TABS[1]);
+		CreativeTabs.addItemToTab(BISMUTH_BUTTON, CreativeTabs.CREATIVE_TABS[1]);
+		CreativeTabs.addItemToTab(BISMUTH_DOOR, CreativeTabs.CREATIVE_TABS[1]);
+		CreativeTabs.addItemToTab(BISMUTH_TRAPDOOR, CreativeTabs.CREATIVE_TABS[1]);
 
 		BLOCKS.register(eventBus);
 	}

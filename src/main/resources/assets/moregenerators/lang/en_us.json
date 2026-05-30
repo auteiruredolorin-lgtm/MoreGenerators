@@ -5,14 +5,20 @@
 	"item.moregenerators.radish": "Radish",
 	"item.moregenerators.frostfire_ice": "FrostFire Ice",
 	"item.moregenerators.starlight_ashes": "Starlight Ashes",
-
 	"block.moregenerators.bismuth_block": "Bismuth Block",
 	"block.moregenerators.bismuth_ore": "Bismuth Ore",
 	"block.moregenerators.bismuth_deepslate_ore": "Bismuth Deepslate Ore",
-
+	"block.moregenerators.bismuth_stairs": "Bismuth Stairs",
+	"block.moregenerators.bismuth_slab": "Bismuth Slab",
+	"block.moregenerators.bismuth_button": "Bismuth Button",
+	"block.moregenerators.bismuth_pressure_plate": "Bismuth Pressure Plate",
+	"block.moregenerators.bismuth_fence": "Bismuth Fence",
+	"block.moregenerators.bismuth_fence_gate": "Bismuth Fence Gate",
+	"block.moregenerators.bismuth_wall": "Bismuth Wall",
+	"block.moregenerators.bismuth_door": "Bismuth Door",
+	"block.moregenerators.bismuth_trapdoor": "Bismuth Trapdoor",
 	"creativetab.moregenerators.more_generators_items": "More Generators Items",
 	"creativetab.moregenerators.more_generators_blocks": "More Generators Blocks",
-
 	"tooltip.moregenerators.bismuth_magic_block": "f\rr\n\ra\r\n§8f§r",
 	"tooltip.moregenerators.chiesl": "shift pls",
 	"tooltip.moregenerators.chiesl.shift_down": "try on grass, dirt, stone, end stone, deepslate, bismuth ores",
