@@ -15,7 +15,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-@EventBusSubscriber(modid = MoreGenerators.MOD_ID, bus=EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = MoreGenerators.MOD_ID)
 public class DataGenerators {
 
 	@SubscribeEvent

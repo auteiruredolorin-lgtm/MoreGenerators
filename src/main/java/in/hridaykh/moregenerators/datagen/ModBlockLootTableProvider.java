@@ -5,7 +5,6 @@ import java.util.Set;
 import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.blocks.ModBlocks;
 import in.hridaykh.moregenerators.items.ModItems;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -20,7 +19,6 @@ import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
 

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "moregenerators:block/bismuth_block"
+    }
+  }
+}
