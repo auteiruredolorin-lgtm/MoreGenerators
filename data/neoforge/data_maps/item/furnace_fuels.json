@@ -1,0 +1,10 @@
+{
+	"values": {
+		"moregenerators:starlight_ashes": {
+			"burn_time": 120000
+		},
+		"moregenerators:bismuth_block": {
+			"burn_time": 1200
+		}
+	}
+}

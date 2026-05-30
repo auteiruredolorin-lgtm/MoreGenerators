@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:blasting",
+	"category": "misc",
+	"ingredient": {
+		"item": "moregenerators:raw_bismuth"
+	},
+	"result": {
+		"id": "moregenerators:bismuth"
+	},
+	"experience": 1,
+	"cookingtime": 50
+}
