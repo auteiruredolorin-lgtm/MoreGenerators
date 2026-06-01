@@ -1,9 +1,9 @@
 package in.hridaykh.moregenerators;
 
 import com.mojang.logging.LogUtils;
+import in.hridaykh.moregenerators.collections.CreativeTabs;
 import in.hridaykh.moregenerators.collections.ModBlocks;
 import in.hridaykh.moregenerators.collections.ModItems;
-import in.hridaykh.moregenerators.collections.CreativeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -28,13 +28,18 @@ public class MoreGenerators {
 		ModBlocks.register(modEventBus);
 		CreativeTabs.register(modEventBus);
 
+		if (org.patryk3211.powergrid.PowerGrid.REGISTRATE != null)
+			org.patryk3211.powergrid.PowerGrid.REGISTRATE.registerEventListeners(modEventBus);
+
 		modEventBus.addListener(ModItems::registerCreativeModeTabContents);
 		modEventBus.addListener(ModBlocks::registerCreativeModeTabContents);
 	}
+
 	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {
 		LOGGER.info("HELLO from server starting");
 	}
+
 	@EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
 	public static class ClientModEvents {
 		@SubscribeEvent

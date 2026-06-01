@@ -47,24 +47,13 @@ public class LedLightBulb extends LightBulb {
 			case BULB -> ModPartialModels.DYED_MODEL_BULB;
 		};
 
-		applyRatedValues(
-			RATED_POWER_WATTS,
-			RATED_VOLTAGE_VOLTS,
-			TEMPERATURE_AT_RATED_RESISTANCE,
-			THERMAL_MASS
-		);
+		applyRatedValues(RATED_POWER_WATTS, RATED_VOLTAGE_VOLTS, TEMPERATURE_AT_RATED_RESISTANCE, THERMAL_MASS);
 	}
 
 	private static Component propertiesHeader(boolean holdingShift) {
-		final String[] headerParts = Component.translatable("powergrid.tooltip.holdForDescription", "$")
-			.getString()
-			.split("\\$");
-		final MutableComponent keyComponent = Component.translatable("create.tooltip.keyShift").copy()
-			.withStyle(holdingShift ? ChatFormatting.WHITE : ChatFormatting.GRAY);
-		return Component.empty()
-			.append(Component.literal(headerParts[0]).withStyle(ChatFormatting.DARK_GRAY))
-			.append(keyComponent)
-			.append(Component.literal(headerParts[1]).withStyle(ChatFormatting.DARK_GRAY));
+		final String[] headerParts = Component.translatable("powergrid.tooltip.holdForDescription", "$").getString().split("\\$");
+		final MutableComponent keyComponent = Component.translatable("create.tooltip.keyShift").copy().withStyle(holdingShift ? ChatFormatting.WHITE : ChatFormatting.GRAY);
+		return Component.empty().append(Component.literal(headerParts[0]).withStyle(ChatFormatting.DARK_GRAY)).append(keyComponent).append(Component.literal(headerParts[1]).withStyle(ChatFormatting.DARK_GRAY));
 	}
 
 	private static PartialModel partial(String path) {
@@ -92,31 +81,17 @@ public class LedLightBulb extends LightBulb {
 		}
 	}
 
-	private void applyRatedValues(
-		float ratedPower,
-		float ratedVoltage,
-		float maxTemperature,
-		float thermalMass
-	) {
+	private void applyRatedValues(float ratedPower, float ratedVoltage, float maxTemperature, float thermalMass) {
 		this.power = ratedPower;
 		this.voltage = ratedVoltage;
 		this.T_max = maxTemperature;
 		this.R_max = (ratedVoltage * ratedVoltage) / ratedPower;
 		this.R_min = this.R_max * MIN_RESISTANCE_FACTOR;
-		this.thermalProperties = new ILightBulb.Properties(
-			ratedPower / DISSIPATION_DIVISOR,
-			thermalMass,
-			OVERHEAT_TEMPERATURE
-		);
+		this.thermalProperties = new ILightBulb.Properties(ratedPower / DISSIPATION_DIVISOR, thermalMass, OVERHEAT_TEMPERATURE);
 	}
 
 	public static class State extends LightBulb.SimpleState {
-		public <T extends Item & ILightBulb> State(
-			T bulb,
-			LightFixtureBlockEntity fixture,
-			Supplier<Function<LightBulb.State, PartialModel>> modelProviderSupplier,
-			Supplier<Function<DyedState, PartialModel>> dyedModelProviderSupplier
-		) {
+		public <T extends Item & ILightBulb> State(T bulb, LightFixtureBlockEntity fixture, Supplier<Function<LightBulb.State, PartialModel>> modelProviderSupplier, Supplier<Function<DyedState, PartialModel>> dyedModelProviderSupplier) {
 			super(bulb, fixture, modelProviderSupplier, dyedModelProviderSupplier);
 		}
 

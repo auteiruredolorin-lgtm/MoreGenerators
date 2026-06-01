@@ -1,6 +1,5 @@
 package in.hridaykh.moregenerators.collections;
 
-import com.simibubi.create.foundation.data.SharedProperties;
 import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.customTypes.BismuthMagicBlock;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -15,8 +14,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import org.patryk3211.powergrid.PowerGrid;
-import org.patryk3211.powergrid.electricity.creative.CreativeSourceBlock;
 
 import java.util.function.Supplier;
 
