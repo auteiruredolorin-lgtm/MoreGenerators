@@ -1,21 +1,19 @@
 package in.hridaykh.moregenerators;
 
-import org.slf4j.Logger;
-
 import com.mojang.logging.LogUtils;
-
-import in.hridaykh.moregenerators.blocks.ModBlocks;
-import in.hridaykh.moregenerators.items.ModItems;
-import in.hridaykh.moregenerators.tabs.CreativeTabs;
+import in.hridaykh.moregenerators.collections.ModBlocks;
+import in.hridaykh.moregenerators.collections.ModItems;
+import in.hridaykh.moregenerators.collections.CreativeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import org.slf4j.Logger;
 
 @Mod(MoreGenerators.MOD_ID)
 public class MoreGenerators {
@@ -33,12 +31,10 @@ public class MoreGenerators {
 		modEventBus.addListener(ModItems::registerCreativeModeTabContents);
 		modEventBus.addListener(ModBlocks::registerCreativeModeTabContents);
 	}
-
 	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {
 		LOGGER.info("HELLO from server starting");
 	}
-
 	@EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
 	public static class ClientModEvents {
 		@SubscribeEvent

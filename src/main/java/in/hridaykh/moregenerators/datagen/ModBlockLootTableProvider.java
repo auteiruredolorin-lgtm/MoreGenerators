@@ -2,9 +2,8 @@ package in.hridaykh.moregenerators.datagen;
 
 import java.util.Set;
 
-import in.hridaykh.moregenerators.MoreGenerators;
-import in.hridaykh.moregenerators.blocks.ModBlocks;
-import in.hridaykh.moregenerators.items.ModItems;
+import in.hridaykh.moregenerators.collections.ModBlocks;
+import in.hridaykh.moregenerators.collections.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -19,7 +18,6 @@ import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.neoforged.fml.common.Mod;
 
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
@@ -31,6 +29,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 	@Override
 	protected void generate() {
 		dropSelf(ModBlocks.BISMUTH_BLOCK.get());
+
 
 		add(ModBlocks.BISMUTH_ORE.get(), b -> createMultipleOre(ModBlocks.BISMUTH_ORE.get(), ModItems.RAW_BISMUTH.get(), 3, 7));
 		add(ModBlocks.BISMUTH_DEEPSLATE_ORE.get(), b -> createMultipleOre(ModBlocks.BISMUTH_DEEPSLATE_ORE.get(), ModItems.RAW_BISMUTH.get(), 5, 10));

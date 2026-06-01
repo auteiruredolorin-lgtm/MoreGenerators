@@ -1,8 +1,8 @@
 package in.hridaykh.moregenerators.datagen;
 
 import in.hridaykh.moregenerators.MoreGenerators;
-import in.hridaykh.moregenerators.blocks.ModBlocks;
-import in.hridaykh.moregenerators.items.ModItems;
+import in.hridaykh.moregenerators.collections.ModBlocks;
+import in.hridaykh.moregenerators.collections.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
