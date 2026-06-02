@@ -4,7 +4,6 @@ import com.simibubi.create.AllItems;
 import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.collections.ModBlocks;
 import in.hridaykh.moregenerators.collections.ModItems;
-import in.hridaykh.moregenerators.collections.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -15,6 +14,7 @@ import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import org.patryk3211.powergrid.collections.ModdedItems;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -39,28 +39,25 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 	@Override
 	protected void buildRecipes(RecipeOutput ro) {
-		ItemLike bismuthItem = ModItems.BISMUTH.get();
+		ItemLike bismuthItem = ModItems.BISMUTH;
 
 		// Basic Bismuth
 		shapelessRecipe(ro, AllItems.CRUSHED_TIN, bismuthItem, 9);
-		shapelessRecipe(ro, ModBlocks.BISMUTH_BLOCK.get(), bismuthItem, 9);
-		shapedRecipe(ro, bismuthItem, "bbb_bbb_bbb", ModBlocks.BISMUTH_BLOCK.get(), 1);
+		shapelessRecipe(ro, ModBlocks.BISMUTH_BLOCK, bismuthItem, 9);
+		shapedRecipe(ro, bismuthItem, "bbb_bbb_bbb", ModBlocks.BISMUTH_BLOCK, 1);
 
-		// wire
+		// electrics
 		shapedRecipe(ro, AllItems.COPPER_NUGGET, "##", ModdedItems.WIRE, 3);
-
-		// TODO: bonemeal -> phosphor, quartz -> silicon
-		shapelessRecipe2Ins(ro, Items.BONE_MEAL, Items.QUARTZ, ModItems.LED_FILAMENT, 2);
-		var lb = ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.LED_BULB).unlockedBy("has_led_filament", has(ModItems.LED_FILAMENT));
-		lb.define('G', Items.GLASS_PANE).define('F', ModItems.LED_FILAMENT).define('C', AllItems.COPPER_SHEET);
-		lb.pattern(" G ").pattern("GFG").pattern(" C ");
-		lb.save(ro);
+		shapelessRecipe2Ins(ro, ModItems.PHOSPHORUS, ModItems.SILICON, ModItems.LED_FILAMENT, 2);
+		complexShapedRecipe(ro, Map.of('G', Items.GLASS_PANE, 'F', ModItems.LED_FILAMENT, 'C', AllItems.COPPER_SHEET), new String[]{" G ", "GFG", " C "}, ModItems.LED_BULB, 1);
 
 		// Smelting
 		List<ItemLike> bismuthSmeltables = List.of(ModBlocks.BISMUTH_ORE, ModBlocks.BISMUTH_DEEPSLATE_ORE, ModItems.RAW_BISMUTH);
 		oreSmelting(ro, bismuthSmeltables, RecipeCategory.MISC, bismuthItem, 5f, 100, "bismuth");
 		oreBlasting(ro, bismuthSmeltables, RecipeCategory.MISC, bismuthItem, 5f, 100, "bismuth");
 
+		oreSmelting(ro, List.of(Items.QUARTZ), RecipeCategory.MISC, ModItems.SILICON, 0f, 100, "silicon");
+		oreBlasting(ro, List.of(Items.QUARTZ), RecipeCategory.MISC, ModItems.SILICON, 0f, 100, "silicon");
 	}
 
 	private void shapelessRecipe(RecipeOutput ro, ItemLike in, ItemLike out, int q) {
@@ -87,5 +84,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 	}
 
+	private void complexShapedRecipe(RecipeOutput ro, Map<Character, ItemLike> inputDefinations, String[] pattern, ItemLike out, int q) {
+		if (pattern.length != 3) throw new IllegalArgumentException("shaped recipe pattern length should be 3");
+
+		String outName = out.asItem().getDescriptionId();
+		var b = ShapedRecipeBuilder.shaped(RecipeCategory.MISC, out, q).pattern(pattern[0]).pattern(pattern[1]).pattern(pattern[2]);
+
+		for (Map.Entry<Character, ItemLike> entry : inputDefinations.entrySet()) {
+			b.define(entry.getKey(), entry.getValue());
+			b.unlockedBy("has_" + entry.getValue().asItem().getDescriptionId(), has(entry.getValue()));
+		}
+
+		b.save(ro, "complex_" + outName);
+
+	}
 
 }

@@ -1,6 +1,8 @@
 package in.hridaykh.moregenerators.datagen;
 
 import in.hridaykh.moregenerators.MoreGenerators;
+import in.hridaykh.moregenerators.datagen.createRecipes.CrushingRecipes;
+import in.hridaykh.moregenerators.datagen.createRecipes.MillingRecipes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -30,6 +32,8 @@ public class DataGenerators {
 			List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
 
 		generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput, lookupProvider));
+		generator.addProvider(event.includeServer(), new MillingRecipes(packOutput, lookupProvider));
+		generator.addProvider(event.includeServer(), new CrushingRecipes(packOutput, lookupProvider));
 
 		BlockTagsProvider blockTagsProvider = new ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
 		generator.addProvider(event.includeServer(), blockTagsProvider);

@@ -42,12 +42,12 @@ side = "BOTH"
 modId = "${mod_id}"
 mandatory = true
 versionRange = "${minecraft_version_range}"
-ordering = "NONE"
+ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies]]
 modId = "${mod_id}"
 mandatory = true
 versionRange = "[${neo_version},)"
-ordering = "NONE"
+ordering = "AFTER"
 side = "BOTH"

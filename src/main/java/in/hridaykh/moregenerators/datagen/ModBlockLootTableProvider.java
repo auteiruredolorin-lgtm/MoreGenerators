@@ -31,6 +31,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 		add(ModBlocks.BISMUTH_ORE.get(), b -> oreLootTable(ModBlocks.BISMUTH_ORE.get(), ModItems.RAW_BISMUTH.get(), 3, 7));
 		add(ModBlocks.BISMUTH_DEEPSLATE_ORE.get(), b -> oreLootTable(ModBlocks.BISMUTH_DEEPSLATE_ORE.get(), ModItems.RAW_BISMUTH.get(), 5, 10));
 
+		dropSelf(ModBlocks.RESISTOR.get());
 	}
 
 	protected LootTable.Builder oreLootTable(Block block, Item item, int min, int max) {

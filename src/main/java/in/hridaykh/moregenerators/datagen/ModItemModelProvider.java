@@ -20,7 +20,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 		basicItem(ModItems.LED_FILAMENT.get());
 
+		basicItem(ModItems.PHOSPHORUS.get());
+		basicItem(ModItems.SILICON.get());
+
 		this.withExistingParent(ModItems.LED_BULB.getId().getPath(), modLoc("block/lamps/light_bulb"));
+		this.withExistingParent(ModBlocks.RESISTOR.getId().getPath(), modLoc("block/resistor_v"));
 	}
 
 }

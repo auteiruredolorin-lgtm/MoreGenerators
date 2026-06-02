@@ -2,8 +2,10 @@ package in.hridaykh.moregenerators;
 
 import com.mojang.logging.LogUtils;
 import in.hridaykh.moregenerators.collections.CreativeTabs;
+import in.hridaykh.moregenerators.collections.ModBlockEntities;
 import in.hridaykh.moregenerators.collections.ModBlocks;
 import in.hridaykh.moregenerators.collections.ModItems;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -12,6 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
@@ -26,6 +29,7 @@ public class MoreGenerators {
 		// ALWAYS REGISTER CREATIVE MODE TABS LAST
 		ModItems.register(modEventBus);
 		ModBlocks.register(modEventBus);
+		ModBlockEntities.register(modEventBus);
 		CreativeTabs.register(modEventBus);
 
 		if (org.patryk3211.powergrid.PowerGrid.REGISTRATE != null)
@@ -43,5 +47,14 @@ public class MoreGenerators {
 		@SubscribeEvent
 		public static void onClientSetup(FMLCommonSetupEvent event) {
 		}
+
+		@SubscribeEvent
+		public static void onItemTooltip(ItemTooltipEvent event) {
+			ItemStack stack = event.getItemStack();
+			if (stack.is(ModBlocks.RESISTOR.asItem()))
+				ModBlocks.RESISTOR.get().appendProperties(stack, event.getEntity(), event.getToolTip());
+		}
 	}
+
+
 }
