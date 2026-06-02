@@ -21,33 +21,33 @@ Adding more Electricity Generators to a world near you!
 modId = "architectury"
 type = "required"
 versionRange = "[13.0.8,)"
-ordering = "AFTER" # Forces architectury to load first
+ordering = "NONE"
 side = "BOTH"
 
 [[dependencies]]
 modId = "powergrid"
 type = "required"
 versionRange = "[0.5.5.1,)"
-ordering = "AFTER" # Crucial: Fixes the Datagen NullPointerException by ensuring Powergrid initializes first
+ordering = "NONE"
 side = "BOTH"
 
 [[dependencies]]
 modId = "create"
 type = "required"
 versionRange = "[6.0.10,6.1.0)"
-ordering = "AFTER" # Forces Create to load first
+ordering = "NONE"
 side = "BOTH"
 
 [[dependencies]]
 modId = "${mod_id}"
 mandatory = true
 versionRange = "${minecraft_version_range}"
-ordering = "AFTER"
+ordering = "NONE"
 side = "BOTH"
 
 [[dependencies]]
 modId = "${mod_id}"
 mandatory = true
 versionRange = "[${neo_version},)"
-ordering = "AFTER"
+ordering = "NONE"
 side = "BOTH"

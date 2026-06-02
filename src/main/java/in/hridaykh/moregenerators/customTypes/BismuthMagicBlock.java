@@ -1,7 +1,5 @@
 package in.hridaykh.moregenerators.customTypes;
 
-import java.util.List;
-
 import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.collections.ModItems;
 import in.hridaykh.moregenerators.collections.ModTags;
@@ -20,6 +18,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+
+import java.util.List;
 
 public class BismuthMagicBlock extends Block {
 	public BismuthMagicBlock(Properties properties) {

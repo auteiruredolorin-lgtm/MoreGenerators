@@ -4,9 +4,11 @@ import com.simibubi.create.AllItems;
 import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.collections.ModBlocks;
 import in.hridaykh.moregenerators.collections.ModItems;
+import in.hridaykh.moregenerators.collections.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
@@ -47,21 +49,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// wire
 		shapedRecipe(ro, AllItems.COPPER_NUGGET, "##", ModdedItems.WIRE, 3);
 
+		// TODO: bonemeal -> phosphor, quartz -> silicon
+		shapelessRecipe2Ins(ro, Items.BONE_MEAL, Items.QUARTZ, ModItems.LED_FILAMENT, 2);
+		var lb = ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.LED_BULB).unlockedBy("has_led_filament", has(ModItems.LED_FILAMENT));
+		lb.define('G', Items.GLASS_PANE).define('F', ModItems.LED_FILAMENT).define('C', AllItems.COPPER_SHEET);
+		lb.pattern(" G ").pattern("GFG").pattern(" C ");
+		lb.save(ro);
+
 		// Smelting
 		List<ItemLike> bismuthSmeltables = List.of(ModBlocks.BISMUTH_ORE, ModBlocks.BISMUTH_DEEPSLATE_ORE, ModItems.RAW_BISMUTH);
 		oreSmelting(ro, bismuthSmeltables, RecipeCategory.MISC, bismuthItem, 5f, 100, "bismuth");
 		oreBlasting(ro, bismuthSmeltables, RecipeCategory.MISC, bismuthItem, 5f, 100, "bismuth");
-
-		// Non-Block Blocks
-		shapedRecipe(ro, bismuthItem, "1  22", ModBlocks.BISMUTH_STAIRS.get(), 4);
-		slab(ro, RecipeCategory.BUILDING_BLOCKS, ModBlocks.BISMUTH_SLAB.get(), bismuthItem);
-		wall(ro, RecipeCategory.BUILDING_BLOCKS, ModBlocks.BISMUTH_WALL.get(), bismuthItem);
-		pressurePlate(ro, ModBlocks.BISMUTH_PRESSURE_PLATE.get(), bismuthItem);
-		// non-block blocks' builders
-		Ingredient ing = Ingredient.of(bismuthItem);
-		var builders = List.of(buttonBuilder(ModBlocks.BISMUTH_BUTTON.get(), ing), fenceBuilder(ModBlocks.BISMUTH_FENCE.get(), ing), fenceGateBuilder(ModBlocks.BISMUTH_FENCE_GATE.get(), ing), doorBuilder(ModBlocks.BISMUTH_DOOR.get(), ing), trapdoorBuilder(ModBlocks.BISMUTH_TRAPDOOR.get(), ing));
-		for (RecipeBuilder builder : builders)
-			builder.group("bismuth").unlockedBy("has_bismuth", has(bismuthItem)).save(ro);
 
 	}
 
@@ -69,6 +67,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		String inName = in.asItem().getDescriptionId();
 		String outName = out.asItem().getDescriptionId();
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, out, q).requires(in).unlockedBy("has_" + inName, has(in)).save(ro, outName + "_from_" + inName);
+	}
+
+	private void shapelessRecipe2Ins(RecipeOutput ro, ItemLike in1, ItemLike in2, ItemLike out, int q) {
+		String in1Name = in1.asItem().getDescriptionId();
+		String in2Name = in2.asItem().getDescriptionId();
+		String outName = out.asItem().getDescriptionId();
+		var builder = ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, out, q).requires(in1).requires(in2);
+		builder.unlockedBy("has_" + in1Name, has(in1)).unlockedBy("has_" + in2Name, has(in2));
+		builder.save(ro, outName + "_from_" + in1Name + "_and_" + in2Name);
 	}
 
 	private void shapedRecipe(RecipeOutput ro, ItemLike in, String pattern, ItemLike out, int q) {

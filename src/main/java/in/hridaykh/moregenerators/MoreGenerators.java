@@ -31,8 +31,6 @@ public class MoreGenerators {
 		if (org.patryk3211.powergrid.PowerGrid.REGISTRATE != null)
 			org.patryk3211.powergrid.PowerGrid.REGISTRATE.registerEventListeners(modEventBus);
 
-		modEventBus.addListener(ModItems::registerCreativeModeTabContents);
-		modEventBus.addListener(ModBlocks::registerCreativeModeTabContents);
 	}
 
 	@SubscribeEvent
