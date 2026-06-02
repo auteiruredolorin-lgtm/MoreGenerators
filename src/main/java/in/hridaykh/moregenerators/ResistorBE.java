@@ -35,11 +35,9 @@ public class ResistorBE extends ElectricBlockEntity {
 
 		this.value.withResistanceCallback(R -> {
 			double target = (double) R;
-			if (target <= 0.0001 || !Double.isFinite(target))
-				target = 1.0;
+			if (target <= 0.0001 || !Double.isFinite(target)) target = 1.0;
 
-			if (this.wire != null)
-				this.wire.setResistance(target);
+			if (this.wire != null) this.wire.setResistance(target);
 
 			this.notifyUpdate();
 		});
@@ -53,11 +51,9 @@ public class ResistorBE extends ElectricBlockEntity {
 		this.wire = builder.connect(0.1F, builder.terminalNode(0), builder.terminalNode(1));
 
 		double targetResistance = this.loadedResistance;
-		if (this.value != null)
-			targetResistance = this.value.getResistance();
+		if (this.value != null) targetResistance = this.value.getResistance();
 
-		if (targetResistance <= 0.0)
-			targetResistance = 1.0;
+		if (targetResistance <= 0.0) targetResistance = 1.0;
 
 		this.wire.setResistance(targetResistance);
 	}
@@ -65,10 +61,8 @@ public class ResistorBE extends ElectricBlockEntity {
 	@Override
 	protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
 		super.read(tag, registries, clientPacket);
-		if (tag.contains("ScrollValue"))
-			this.loadedResistance = Math.max(tag.getDouble("ScrollValue"), 0.0001f);
-		else
-			this.loadedResistance = 0.0001f;
+		if (tag.contains("ScrollValue")) this.loadedResistance = Math.max(tag.getDouble("ScrollValue"), 0.0001f);
+		else this.loadedResistance = 0.0001f;
 	}
 
 	@Override
@@ -80,5 +74,32 @@ public class ResistorBE extends ElectricBlockEntity {
 
 	public void electricalTick() {
 		if (this.wire != null) this.applyPower(this.wire);
+	}
+
+	public void tick() {
+		super.tick();
+		if (this.level == null || this.level.isClientSide) return;
+
+		int targetLight = calculateTargetLight();
+
+		targetLight = Math.clamp(targetLight, 0, 15);
+
+		BlockState currentState = this.getBlockState();
+
+		if (currentState.hasProperty(Resistor.LIGHT_LEVEL) && currentState.getValue(Resistor.LIGHT_LEVEL) != targetLight)
+			this.level.setBlock(this.worldPosition, currentState.setValue(Resistor.LIGHT_LEVEL, targetLight), 3);
+
+	}
+
+	private int calculateTargetLight() {
+		if (this.value == null) return 0;
+
+		double currentRes = this.value.getResistance();
+
+		if (currentRes > 100) return 15;
+		if (currentRes > 50) return 10;
+		if (currentRes > 10) return 5;
+
+		return 0;
 	}
 }
