@@ -22,9 +22,17 @@ public class SolarBlock extends HorizontalAxisElectricBlock implements IBE<Solar
 
 	static {
 		HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
-		SHAPE = Shapes.or(box(0.0F, 0.0F, 0.0F, 16.0F, 8.0F, 16.0F));
-		var t1 = new TerminalBoundingBox(IDecoratedTerminal.POSITIVE, 6.0F, 13.0F, 2.0F, 10.0F, 16.0F, 6.0F).withColor(16726843);
-		var t2 = new TerminalBoundingBox(IDecoratedTerminal.NEGATIVE, 6.0F, 13.0F, 10.0F, 10.0F, 16.0F, 14.0F).withColor(3899647);
+
+		// Centered on the 16x16 grid (0.0 to 16.0)
+		SHAPE = Shapes.or(
+			box(0.0F, 0.0F, 0.0F, 16.0F, 1.0F, 16.0F),
+			box(1.0F, 1.0F, 1.0F, 15.0F, 2.0F, 15.0F)
+		);
+
+		// Terminals placed on the Z-axis faces (North/South) relative to the 16x16 grid
+		var t1 = new TerminalBoundingBox(IDecoratedTerminal.POSITIVE, 7.0F, 1.0F, 0.0F, 9.0F, 2.0F, 1.0F).withColor(16726843);
+		var t2 = new TerminalBoundingBox(IDecoratedTerminal.NEGATIVE, 7.0F, 1.0F, 15.0F, 9.0F, 2.0F, 16.0F).withColor(3899647);
+
 		TERMINALS = new TerminalBoundingBox[]{t1, t2};
 	}
 

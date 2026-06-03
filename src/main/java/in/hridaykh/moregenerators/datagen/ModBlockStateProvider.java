@@ -4,6 +4,7 @@ import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.collections.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -15,11 +16,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-//		blockWithItem(ModBlocks.SOLAR_PANEL);
+		solarPanelBlock(ModBlocks.SOLAR_PANEL);
 	}
 
-	private void blockWithItem(DeferredBlock<?> block) {
-		simpleBlockWithItem(block.get(), cubeAll(block.get()));
+	private void solarPanelBlock(DeferredBlock<?> block) {
+		ModelFile.ExistingModelFile solarPanelModel = models().getExistingFile(modLoc("block/" + block.getId().getPath()));
+		simpleBlock(block.get(), solarPanelModel);
 	}
-
 }

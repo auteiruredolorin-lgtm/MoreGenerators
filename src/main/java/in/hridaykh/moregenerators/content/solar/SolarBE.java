@@ -28,6 +28,23 @@ public class SolarBE extends ElectricBlockEntity implements IHaveGoggleInformati
 		super(ModBlockEntities.SOLAR_PANEL_BE.get(), pos, state);
 	}
 
+	private static int sunIntensity(long time) {
+		long dayTime = time % 24000;
+
+		// 2. Calculate the sun's angle in radians.
+		// Minecraft's day begins at tick 0, but the sun rises at tick 22000.
+		// Subtracting 6000 offsets the calculation so peak noon is at tick 6000.
+		double angle = Math.toRadians((dayTime - 6000) * 360.0 / 24000.0);
+
+		// 3. Use a cosine wave to calculate the height of the sun.
+		// Scale it up by 15 (max power) and add a small offset (+0.5) to mimic
+		// the game's rounding transitions seen in your stair-step graph.
+		int power = (int) Math.round(15.0 * Math.cos(angle) + 0.5);
+
+		// 4. Clamp the values between 0 and 15 so it never goes out of bounds
+		return Math.clamp(power, 0, 15);
+	}
+
 	public void buildCircuit(IElectricEntity.CircuitBuilder builder) {
 		builder.setTerminalCount(2);
 		FloatingNode positive = builder.terminalNode(0);
@@ -43,8 +60,7 @@ public class SolarBE extends ElectricBlockEntity implements IHaveGoggleInformati
 
 		long timeOfDay = this.level.dayTime() % 24000L;
 
-		double sunIntensity = timeOfDay > 12000L ? 0.0 : Math.sin((timeOfDay / 12000.0) * Math.PI);
-		double targetVoltage = PEAK_VOLTAGE * sunIntensity;
+		double targetVoltage = PEAK_VOLTAGE * ((double) sunIntensity(timeOfDay) / 15);
 
 		this.voltageSourceCoupling.setVoltage(targetVoltage);
 	}

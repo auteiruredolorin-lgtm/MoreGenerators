@@ -4,7 +4,6 @@ import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.collections.ModBlocks;
 import in.hridaykh.moregenerators.collections.ModItems;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -21,7 +20,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		basicItem(ModItems.PHOSPHORUS.get());
 		basicItem(ModItems.SILICON.get());
 
-//		basicItem(Item.byBlock(ModBlocks.SOLAR_PANEL.get()));
+		this.withExistingParent(ModBlocks.SOLAR_PANEL.getId().getPath(), modLoc("block/solar_panel"));
 
 		this.withExistingParent(ModItems.LED_BULB.getId().getPath(), modLoc("block/lamps/light_bulb"));
 		this.withExistingParent(ModBlocks.LIGHT_RESISTOR.getId().getPath(), modLoc("block/resistor_v_lit"));
