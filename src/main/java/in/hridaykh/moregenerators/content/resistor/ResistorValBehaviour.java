@@ -1,4 +1,4 @@
-package in.hridaykh.moregenerators;
+package in.hridaykh.moregenerators.content.resistor;
 
 import com.google.common.collect.ImmutableList;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
@@ -7,6 +7,7 @@ import com.simibubi.create.foundation.blockEntity.behaviour.ValueSettingsBehavio
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueSettingsBoard;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueSettingsFormatter;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
+import in.hridaykh.moregenerators.MoreGenerators;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
@@ -19,6 +20,10 @@ public class ResistorValBehaviour extends ScrollValueBehaviour {
 
 	public ResistorValBehaviour(Component label, SmartBlockEntity be, ValueBoxTransform slot, int max) {
 		super(label, be, slot);
+		if (max < 10){
+			MoreGenerators.LOGGER.info("ResistorValBehaviour: max is less than 10");
+			max = 150;
+		}
 		this.between(1, max);
 		this.withFormatter(String::valueOf);
 	}

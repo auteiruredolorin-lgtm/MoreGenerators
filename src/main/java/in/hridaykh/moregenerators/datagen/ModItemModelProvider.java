@@ -15,16 +15,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
-		basicItem(ModItems.BISMUTH.get());
-		basicItem(ModItems.RAW_BISMUTH.get());
-
 		basicItem(ModItems.LED_FILAMENT.get());
 
 		basicItem(ModItems.PHOSPHORUS.get());
 		basicItem(ModItems.SILICON.get());
 
 		this.withExistingParent(ModItems.LED_BULB.getId().getPath(), modLoc("block/lamps/light_bulb"));
-		this.withExistingParent(ModBlocks.RESISTOR.getId().getPath(), modLoc("block/resistor_v"));
+		this.withExistingParent(ModBlocks.LIGHT_RESISTOR.getId().getPath(), modLoc("block/resistor_v_lit"));
 	}
 
 }

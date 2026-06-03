@@ -11,6 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
+import org.patryk3211.powergrid.collections.ModdedBlocks;
 import org.patryk3211.powergrid.collections.ModdedItems;
 
 import java.util.List;
@@ -39,22 +40,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 	@Override
 	protected void buildRecipes(RecipeOutput ro) {
-		ItemLike bismuthItem = ModItems.BISMUTH;
-
-		// Basic Bismuth
-		shapelessRecipe(ro, AllItems.CRUSHED_TIN, bismuthItem, 9);
-		shapelessRecipe(ro, ModBlocks.BISMUTH_BLOCK, bismuthItem, 9);
-		shapedRecipe(ro, bismuthItem, "bbb_bbb_bbb", ModBlocks.BISMUTH_BLOCK, 1);
-
 		// electrics
 		shapedRecipe(ro, AllItems.COPPER_NUGGET, "##", ModdedItems.WIRE, 3);
 		shapelessRecipe2Ins(ro, ModItems.PHOSPHORUS, ModItems.SILICON, ModItems.LED_FILAMENT, 2);
 		complexShapedRecipe(ro, Map.of('G', Items.GLASS_PANE, 'F', ModItems.LED_FILAMENT, 'C', AllItems.COPPER_SHEET), new String[]{" G ", "GFG", " C "}, ModItems.LED_BULB, 1);
-
-		// Smelting
-		List<ItemLike> bismuthSmeltables = List.of(ModBlocks.BISMUTH_ORE, ModBlocks.BISMUTH_DEEPSLATE_ORE, ModItems.RAW_BISMUTH);
-		oreSmelting(ro, bismuthSmeltables, RecipeCategory.MISC, bismuthItem, 5f, 100, "bismuth");
-		oreBlasting(ro, bismuthSmeltables, RecipeCategory.MISC, bismuthItem, 5f, 100, "bismuth");
+		shapelessRecipe2Ins(ro, ModdedItems.RESISTOR, Items.TORCH, ModBlocks.LIGHT_RESISTOR, 1);
+		shapelessRecipe2Ins(ro, ModdedBlocks.RESISTOR, Items.TORCH, ModBlocks.LIGHT_RESISTOR, 1);
+		shapelessRecipe(ro, ModdedBlocks.RESISTOR, ModBlocks.LIGHT_RESISTOR, 1);
 
 		oreSmelting(ro, List.of(Items.QUARTZ), RecipeCategory.MISC, ModItems.SILICON, 0f, 100, "silicon");
 		oreBlasting(ro, List.of(Items.QUARTZ), RecipeCategory.MISC, ModItems.SILICON, 0f, 100, "silicon");

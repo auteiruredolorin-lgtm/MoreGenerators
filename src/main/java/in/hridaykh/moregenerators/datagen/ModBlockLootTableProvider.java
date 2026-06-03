@@ -26,22 +26,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
 	@Override
 	protected void generate() {
-		dropSelf(ModBlocks.BISMUTH_BLOCK.get());
-
-		add(ModBlocks.BISMUTH_ORE.get(), b -> oreLootTable(ModBlocks.BISMUTH_ORE.get(), ModItems.RAW_BISMUTH.get(), 3, 7));
-		add(ModBlocks.BISMUTH_DEEPSLATE_ORE.get(), b -> oreLootTable(ModBlocks.BISMUTH_DEEPSLATE_ORE.get(), ModItems.RAW_BISMUTH.get(), 5, 10));
-
-		dropSelf(ModBlocks.RESISTOR.get());
-	}
-
-	protected LootTable.Builder oreLootTable(Block block, Item item, int min, int max) {
-		var itemCountFunc = SetItemCountFunction.setCount(UniformGenerator.between(min, max));
-
-		var registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
-		var fortuneBonusFunc = ApplyBonusCount.addOreBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE));
-
-		var lootTable = LootItem.lootTableItem(item).apply(itemCountFunc).apply(fortuneBonusFunc);
-		return this.createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, lootTable));
+		dropSelf(ModBlocks.LIGHT_RESISTOR.get());
 	}
 
 	@Override

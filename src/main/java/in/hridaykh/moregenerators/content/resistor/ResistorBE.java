@@ -1,6 +1,7 @@
-package in.hridaykh.moregenerators;
+package in.hridaykh.moregenerators.content.resistor;
 
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
+import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.collections.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -15,17 +16,21 @@ import org.patryk3211.powergrid.utility.Lang;
 import java.util.List;
 
 public class ResistorBE extends ElectricBlockEntity {
+	public static final int  powerMultiplier =10;
 	protected ResistorValBehaviour value;
 	protected ElectricWire wire;
-
 	private double loadedResistance = 1.0;
+	private static final int resistanceMultiplier =10;
 
 	public ResistorBE(BlockPos pos, BlockState state) {
 		super(ModBlockEntities.RESISTOR_BE.get(), pos, state);
 	}
 
 	protected ResistorValBehaviour makeScroll() {
-		return new ResistorValBehaviour(Lang.translateDirect("devices.resistor.resistance"), this, new ResistorBoxTransform(), 45);
+		MoreGenerators.LOGGER.info("ResistorBE makeScroll: {}", resistanceMultiplier * 15);
+		var a = new ResistorValBehaviour(Lang.translateDirect("devices.resistor.resistance"), this, new ResistorBoxTransform(), resistanceMultiplier * 15);
+
+		return a;
 	}
 
 	@Override
@@ -80,26 +85,16 @@ public class ResistorBE extends ElectricBlockEntity {
 		super.tick();
 		if (this.level == null || this.level.isClientSide) return;
 
-		int targetLight = calculateTargetLight();
-
-		targetLight = Math.clamp(targetLight, 0, 15);
+		int targetLight = Math.clamp(this.wire == null ? 0 : (int) this.wire.power() / powerMultiplier, 0, 15);
+		boolean shouldBeLit = targetLight > 0;
 
 		BlockState currentState = this.getBlockState();
 
 		if (currentState.hasProperty(Resistor.LIGHT_LEVEL) && currentState.getValue(Resistor.LIGHT_LEVEL) != targetLight)
 			this.level.setBlock(this.worldPosition, currentState.setValue(Resistor.LIGHT_LEVEL, targetLight), 3);
 
-	}
+		if (currentState.hasProperty(Resistor.LIT) && currentState.getValue(Resistor.LIT) != shouldBeLit)
+			this.level.setBlock(this.worldPosition, currentState.setValue(Resistor.LIT, shouldBeLit), 3);
 
-	private int calculateTargetLight() {
-		if (this.value == null) return 0;
-
-		double currentRes = this.value.getResistance();
-
-		if (currentRes > 100) return 15;
-		if (currentRes > 50) return 10;
-		if (currentRes > 10) return 5;
-
-		return 0;
 	}
 }

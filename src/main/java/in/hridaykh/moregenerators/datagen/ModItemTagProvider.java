@@ -25,6 +25,5 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		tag(ModTags.Items.RAW_BISMUTH).add(ModItems.RAW_BISMUTH.get());
 	}
 }

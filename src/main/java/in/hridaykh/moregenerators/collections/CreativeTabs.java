@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 public class CreativeTabs {
 
-	public static final CreativeTabName[] CREATIVE_TABS = {new CreativeTabName("more_generators_items", ModItems.BISMUTH), new CreativeTabName("more_generators_blocks", ModBlocks.BISMUTH_BLOCK)};
+	public static final CreativeTabName[] CREATIVE_TABS = {new CreativeTabName("more_generators", ModBlocks.LIGHT_RESISTOR)};
 
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MoreGenerators.MOD_ID);
 	private static final Map<CreativeTabName, List<ItemLike>> ITEMS = new HashMap<>();

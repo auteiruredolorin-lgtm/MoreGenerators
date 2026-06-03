@@ -1,17 +1,11 @@
 {
-  "item.moregenerators.bismuth": "Bismuth",
-  "item.moregenerators.raw_bismuth": "Raw Bismuth",
   "item.moregenerators.led_filament": "LED Filament",
   "item.moregenerators.led_bulb": "LED Bulb",
   "item.moregenerators.silicon": "Silicon",
   "item.moregenerators.phosphorus": "Phosphorus",
-  "block.moregenerators.bismuth_block": "Bismuth Block",
-  "block.moregenerators.bismuth_ore": "Bismuth Ore",
-  "block.moregenerators.bismuth_deepslate_ore": "Bismuth Deepslate Ore",
-  "creativetab.moregenerators.more_generators_items": "More Generators Items",
-  "creativetab.moregenerators.more_generators_blocks": "More Generators Blocks",
-  "tooltip.moregenerators.bismuth_magic_block": "f\rr\n\ra\r\n§8f§r",
-  "block.moregenerators.resistor": "Resistor",
+  "block.moregenerators.source_block": "source_block",
+  "creativetab.moregenerators.more_generators": "More Generators",
+  "block.moregenerators.resistor": "Light Resistor",
   "tooltip.power.max": "Max Power Capacity:",
   "moregenerators.devices.resistor.resistance": "Resistance: %s"
 }

@@ -1,4 +1,4 @@
-package in.hridaykh.moregenerators.customTypes;
+package in.hridaykh.moregenerators.content;
 
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import in.hridaykh.moregenerators.MoreGenerators;

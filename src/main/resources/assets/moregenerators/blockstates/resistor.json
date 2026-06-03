@@ -1,54 +1,29 @@
 {
   "variants": {
-    "axis_along_first=false,facing=down": {
-      "model": "moregenerators:block/resistor_v",
-      "y": 90
-    },
-    "axis_along_first=false,facing=east": {
-      "model": "moregenerators:block/resistor_h",
-      "x": -90
-    },
-    "axis_along_first=false,facing=north": {
-      "model": "moregenerators:block/resistor_h",
-      "x": -90,
-      "y": -90
-    },
-    "axis_along_first=false,facing=south": {
-      "model": "moregenerators:block/resistor_h",
-      "x": -90,
-      "y": 90
-    },
-    "axis_along_first=false,facing=up": {
-      "model": "moregenerators:block/resistor_v",
-      "x": 180,
-      "y": 90
-    },
-    "axis_along_first=false,facing=west": {
-      "model": "moregenerators:block/resistor_h",
-      "x": -90,
-      "y": 180
-    },
-    "axis_along_first=true,facing=down": {
-      "model": "moregenerators:block/resistor_v"
-    },
-    "axis_along_first=true,facing=east": {
-      "model": "moregenerators:block/resistor_h"
-    },
-    "axis_along_first=true,facing=north": {
-      "model": "moregenerators:block/resistor_h",
-      "y": -90
-    },
-    "axis_along_first=true,facing=south": {
-      "model": "moregenerators:block/resistor_h",
-      "y": 90
-    },
-    "axis_along_first=true,facing=up": {
-      "model": "moregenerators:block/resistor_v",
-      "x": 180
-    },
-    "axis_along_first=true,facing=west": {
-      "model": "moregenerators:block/resistor_h",
-      "y": 180
-    }
+    "axis_along_first=false,facing=down,lit=false": { "model": "moregenerators:block/resistor_v", "y": 90 },
+    "axis_along_first=false,facing=east,lit=false": { "model": "moregenerators:block/resistor_h", "x": -90 },
+    "axis_along_first=false,facing=north,lit=false": { "model": "moregenerators:block/resistor_h", "x": -90, "y": -90 },
+    "axis_along_first=false,facing=south,lit=false": { "model": "moregenerators:block/resistor_h", "x": -90, "y": 90 },
+    "axis_along_first=false,facing=up,lit=false": { "model": "moregenerators:block/resistor_v", "x": 180, "y": 90 },
+    "axis_along_first=false,facing=west,lit=false": { "model": "moregenerators:block/resistor_h", "x": -90, "y": 180 },
+    "axis_along_first=true,facing=down,lit=false": { "model": "moregenerators:block/resistor_v" },
+    "axis_along_first=true,facing=east,lit=false": { "model": "moregenerators:block/resistor_h" },
+    "axis_along_first=true,facing=north,lit=false": { "model": "moregenerators:block/resistor_h", "y": -90 },
+    "axis_along_first=true,facing=south,lit=false": { "model": "moregenerators:block/resistor_h", "y": 90 },
+    "axis_along_first=true,facing=up,lit=false": { "model": "moregenerators:block/resistor_v", "x": 180 },
+    "axis_along_first=true,facing=west,lit=false": { "model": "moregenerators:block/resistor_h", "y": 180 },
+
+    "axis_along_first=false,facing=down,lit=true": { "model": "moregenerators:block/resistor_v_lit", "y": 90 },
+    "axis_along_first=false,facing=east,lit=true": { "model": "moregenerators:block/resistor_h_lit", "x": -90 },
+    "axis_along_first=false,facing=north,lit=true": { "model": "moregenerators:block/resistor_h_lit", "x": -90, "y": -90 },
+    "axis_along_first=false,facing=south,lit=true": { "model": "moregenerators:block/resistor_h_lit", "x": -90, "y": 90 },
+    "axis_along_first=false,facing=up,lit=true": { "model": "moregenerators:block/resistor_v_lit", "x": 180, "y": 90 },
+    "axis_along_first=false,facing=west,lit=true": { "model": "moregenerators:block/resistor_h_lit", "x": -90, "y": 180 },
+    "axis_along_first=true,facing=down,lit=true": { "model": "moregenerators:block/resistor_v_lit" },
+    "axis_along_first=true,facing=east,lit=true": { "model": "moregenerators:block/resistor_h_lit" },
+    "axis_along_first=true,facing=north,lit=true": { "model": "moregenerators:block/resistor_h_lit", "y": -90 },
+    "axis_along_first=true,facing=south,lit=true": { "model": "moregenerators:block/resistor_h_lit", "y": 90 },
+    "axis_along_first=true,facing=up,lit=true": { "model": "moregenerators:block/resistor_v_lit", "x": 180 },
+    "axis_along_first=true,facing=west,lit=true": { "model": "moregenerators:block/resistor_h_lit", "y": 180 }
   }
 }

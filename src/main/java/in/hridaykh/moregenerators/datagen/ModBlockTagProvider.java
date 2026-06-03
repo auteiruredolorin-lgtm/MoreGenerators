@@ -1,10 +1,8 @@
 package in.hridaykh.moregenerators.datagen;
 
 import in.hridaykh.moregenerators.MoreGenerators;
-import in.hridaykh.moregenerators.collections.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -18,14 +16,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider lookupProvider) {
-		tag(BlockTags.MINEABLE_WITH_PICKAXE)
-			.add(ModBlocks.BISMUTH_BLOCK.get())
-			.add(ModBlocks.BISMUTH_ORE.get())
-			.add(ModBlocks.BISMUTH_DEEPSLATE_ORE.get());
-
-		tag(BlockTags.NEEDS_IRON_TOOL)
-			.add(ModBlocks.BISMUTH_ORE.get())
-			.add(ModBlocks.BISMUTH_DEEPSLATE_ORE.get());
 
 	}
 

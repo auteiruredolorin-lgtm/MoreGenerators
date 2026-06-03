@@ -51,8 +51,8 @@ public class MoreGenerators {
 		@SubscribeEvent
 		public static void onItemTooltip(ItemTooltipEvent event) {
 			ItemStack stack = event.getItemStack();
-			if (stack.is(ModBlocks.RESISTOR.asItem()))
-				ModBlocks.RESISTOR.get().appendProperties(stack, event.getEntity(), event.getToolTip());
+			if (stack.is(ModBlocks.LIGHT_RESISTOR.asItem()))
+				ModBlocks.LIGHT_RESISTOR.get().appendProperties(stack, event.getEntity(), event.getToolTip());
 		}
 	}
 
