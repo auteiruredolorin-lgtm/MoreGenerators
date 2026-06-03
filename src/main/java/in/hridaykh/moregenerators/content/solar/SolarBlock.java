@@ -15,27 +15,29 @@ import org.patryk3211.powergrid.electricity.base.IDecoratedTerminal;
 import org.patryk3211.powergrid.electricity.base.TerminalBoundingBox;
 
 @MethodsReturnNonnullByDefault
-public class SourceBlock extends HorizontalAxisElectricBlock implements IBE<SourceBE> {
+public class SolarBlock extends HorizontalAxisElectricBlock implements IBE<SolarBE> {
 	public static final Property<Direction.Axis> HORIZONTAL_AXIS;
 	private static final VoxelShape SHAPE;
 	private static final TerminalBoundingBox[] TERMINALS;
 
 	static {
 		HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
-		SHAPE = Shapes.or(box(0.0F, 0.0F, 0.0F, 16.0F, 2.0F, 16.0F), box(1.0F, 2.0F, 1.0F, 15.0F, 13.0F, 15.0F));
-		TERMINALS = new TerminalBoundingBox[]{(new TerminalBoundingBox(IDecoratedTerminal.POSITIVE, 6.0F, 13.0F, 2.0F, 10.0F, 16.0F, 6.0F)).withColor(16726843), (new TerminalBoundingBox(IDecoratedTerminal.NEGATIVE, 6.0F, 13.0F, 10.0F, 10.0F, 16.0F, 14.0F)).withColor(3899647)};
+		SHAPE = Shapes.or(box(0.0F, 0.0F, 0.0F, 16.0F, 8.0F, 16.0F));
+		var t1 = new TerminalBoundingBox(IDecoratedTerminal.POSITIVE, 6.0F, 13.0F, 2.0F, 10.0F, 16.0F, 6.0F).withColor(16726843);
+		var t2 = new TerminalBoundingBox(IDecoratedTerminal.NEGATIVE, 6.0F, 13.0F, 10.0F, 10.0F, 16.0F, 14.0F).withColor(3899647);
+		TERMINALS = new TerminalBoundingBox[]{t1, t2};
 	}
 
-	public SourceBlock(BlockBehaviour.Properties settings) {
+	public SolarBlock(BlockBehaviour.Properties settings) {
 		super(settings);
 		this.setTerminalCollection(horizontalZTerminals(this, TERMINALS, SHAPE));
 	}
 
-	public Class<SourceBE> getBlockEntityClass() {
-		return SourceBE.class;
+	public Class<SolarBE> getBlockEntityClass() {
+		return SolarBE.class;
 	}
 
-	public BlockEntityType<? extends SourceBE> getBlockEntityType() {
-		return ModBlockEntities.SOURCE_BE.get();
+	public BlockEntityType<? extends SolarBE> getBlockEntityType() {
+		return ModBlockEntities.SOLAR_PANEL_BE.get();
 	}
 }

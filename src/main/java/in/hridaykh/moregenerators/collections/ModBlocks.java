@@ -2,7 +2,7 @@ package in.hridaykh.moregenerators.collections;
 
 import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.content.resistor.Resistor;
-import in.hridaykh.moregenerators.content.solar.SourceBlock;
+import in.hridaykh.moregenerators.content.solar.SolarBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -18,11 +18,11 @@ public class ModBlocks {
 
 	public static final DeferredBlock<Resistor> LIGHT_RESISTOR = registerBlockWithItem("resistor", () -> new Resistor(BlockBehaviour.Properties.of().instabreak()));
 
-	public static final DeferredBlock<SourceBlock> SOURCE_BLOCK = registerBlockWithItem("source_block", () -> new SourceBlock(BlockBehaviour.Properties.of().instabreak()));
+	public static final DeferredBlock<SolarBlock> SOLAR_PANEL = registerBlockWithItem("solar_panel", () -> new SolarBlock(BlockBehaviour.Properties.of().instabreak()));
 
 	public static void register(IEventBus eventBus) {
 		CreativeTabs.addItemToTab(LIGHT_RESISTOR, CreativeTabs.CREATIVE_TABS[0]);
-		CreativeTabs.addItemToTab(SOURCE_BLOCK, CreativeTabs.CREATIVE_TABS[0]);
+		CreativeTabs.addItemToTab(SOLAR_PANEL, CreativeTabs.CREATIVE_TABS[0]);
 
 		BLOCKS.register(eventBus);
 	}

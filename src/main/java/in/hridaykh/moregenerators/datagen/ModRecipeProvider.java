@@ -45,8 +45,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shapelessRecipe2Ins(ro, ModItems.PHOSPHORUS, ModItems.SILICON, ModItems.LED_FILAMENT, 2);
 		complexShapedRecipe(ro, Map.of('G', Items.GLASS_PANE, 'F', ModItems.LED_FILAMENT, 'C', AllItems.COPPER_SHEET), new String[]{" G ", "GFG", " C "}, ModItems.LED_BULB, 1);
 		shapelessRecipe2Ins(ro, ModdedItems.RESISTOR, Items.TORCH, ModBlocks.LIGHT_RESISTOR, 1);
-		shapelessRecipe2Ins(ro, ModdedBlocks.RESISTOR, Items.TORCH, ModBlocks.LIGHT_RESISTOR, 1);
-		shapelessRecipe(ro, ModdedBlocks.RESISTOR, ModBlocks.LIGHT_RESISTOR, 1);
+		shapelessRecipe2Ins(ro, ModdedBlocks.RESISTOR, Items.GLOWSTONE, ModBlocks.LIGHT_RESISTOR, 1);
 
 		oreSmelting(ro, List.of(Items.QUARTZ), RecipeCategory.MISC, ModItems.SILICON, 0f, 100, "silicon");
 		oreBlasting(ro, List.of(Items.QUARTZ), RecipeCategory.MISC, ModItems.SILICON, 0f, 100, "silicon");

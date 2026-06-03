@@ -28,7 +28,7 @@ side = "BOTH"
 modId = "powergrid"
 type = "required"
 versionRange = "[0.5.5.1,)"
-ordering = "NONE"
+ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies]]

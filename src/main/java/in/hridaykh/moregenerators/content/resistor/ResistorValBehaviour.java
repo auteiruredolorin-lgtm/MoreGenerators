@@ -7,7 +7,6 @@ import com.simibubi.create.foundation.blockEntity.behaviour.ValueSettingsBehavio
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueSettingsBoard;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueSettingsFormatter;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
-import in.hridaykh.moregenerators.MoreGenerators;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
@@ -18,13 +17,9 @@ import java.util.function.Consumer;
 
 public class ResistorValBehaviour extends ScrollValueBehaviour {
 
-	public ResistorValBehaviour(Component label, SmartBlockEntity be, ValueBoxTransform slot, int max) {
+	public ResistorValBehaviour(Component label, SmartBlockEntity be, ValueBoxTransform slot, int min, int max) {
 		super(label, be, slot);
-		if (max < 10){
-			MoreGenerators.LOGGER.info("ResistorValBehaviour: max is less than 10");
-			max = 150;
-		}
-		this.between(1, max);
+		this.between(min, max);
 		this.withFormatter(String::valueOf);
 	}
 
@@ -37,6 +32,7 @@ public class ResistorValBehaviour extends ScrollValueBehaviour {
 
 	@Override
 	public void setValueSettings(Player player, ValueSettingsBehaviour.ValueSettings valueSetting, boolean ctrlHeld) {
+		// This correctly forces 1 as the absolute minimum
 		int value = Math.max(1, valueSetting.value());
 		if (!valueSetting.equals(this.getValueSettings()))
 			this.playFeedbackSound(this);

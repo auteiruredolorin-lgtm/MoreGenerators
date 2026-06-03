@@ -1,7 +1,6 @@
 package in.hridaykh.moregenerators.content.resistor;
 
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
-import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.collections.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -16,19 +15,18 @@ import org.patryk3211.powergrid.utility.Lang;
 import java.util.List;
 
 public class ResistorBE extends ElectricBlockEntity {
-	public static final int  powerMultiplier =10;
+	public static final int powerMultiplier = 10;
+	private static final int resistanceMultiplier = 10;
 	protected ResistorValBehaviour value;
 	protected ElectricWire wire;
 	private double loadedResistance = 1.0;
-	private static final int resistanceMultiplier =10;
 
 	public ResistorBE(BlockPos pos, BlockState state) {
 		super(ModBlockEntities.RESISTOR_BE.get(), pos, state);
 	}
 
 	protected ResistorValBehaviour makeScroll() {
-		MoreGenerators.LOGGER.info("ResistorBE makeScroll: {}", resistanceMultiplier * 15);
-		var a = new ResistorValBehaviour(Lang.translateDirect("devices.resistor.resistance"), this, new ResistorBoxTransform(), resistanceMultiplier * 15);
+		var a = new ResistorValBehaviour(Lang.translateDirect("devices.resistor.resistance"), this, new ResistorBoxTransform(), 1, resistanceMultiplier * 15);
 
 		return a;
 	}
@@ -40,7 +38,8 @@ public class ResistorBE extends ElectricBlockEntity {
 
 		this.value.withResistanceCallback(R -> {
 			double target = (double) R;
-			if (target <= 0.0001 || !Double.isFinite(target)) target = 1.0;
+			// CHANGE: Clamp minimum to 1.0 instead of 0.0001
+			if (target < 1.0 || !Double.isFinite(target)) target = 1.0;
 
 			if (this.wire != null) this.wire.setResistance(target);
 
@@ -66,8 +65,9 @@ public class ResistorBE extends ElectricBlockEntity {
 	@Override
 	protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
 		super.read(tag, registries, clientPacket);
-		if (tag.contains("ScrollValue")) this.loadedResistance = Math.max(tag.getDouble("ScrollValue"), 0.0001f);
-		else this.loadedResistance = 0.0001f;
+		// CHANGE: Read fallback to 1.0 instead of 0.0001f
+		if (tag.contains("ScrollValue")) this.loadedResistance = Math.max(tag.getDouble("ScrollValue"), 1.0);
+		else this.loadedResistance = 1.0;
 	}
 
 	@Override
