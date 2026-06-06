@@ -8,9 +8,9 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.Set;
 
-public class ModBlockLootTableProvider extends BlockLootSubProvider {
+public class mLootTableBlockProvider extends BlockLootSubProvider {
 
-	protected ModBlockLootTableProvider(HolderLookup.Provider provider) {
+	protected mLootTableBlockProvider(HolderLookup.Provider provider) {
 		super(Set.of(), FeatureFlags.REGISTRY.allFlags(), provider);
 
 	}
@@ -19,6 +19,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 	protected void generate() {
 		dropSelf(ModBlocks.LIGHT_RESISTOR.get());
 		dropSelf(ModBlocks.SOLAR_PANEL.get());
+		dropSelf(ModBlocks.BUFF_POTATO_BATTERY.get());
 	}
 
 	@Override

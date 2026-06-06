@@ -3,6 +3,9 @@ package in.hridaykh.moregenerators.datagen;
 import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.datagen.createRecipes.CrushingRecipes;
 import in.hridaykh.moregenerators.datagen.createRecipes.MillingRecipes;
+import in.hridaykh.moregenerators.datagen.extra.ModBlockTagProvider;
+import in.hridaykh.moregenerators.datagen.extra.ModDataMapProvider;
+import in.hridaykh.moregenerators.datagen.extra.ModItemTagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -29,9 +32,9 @@ public class DataGenerators {
 		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
 		generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
-			List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
+			List.of(new LootTableProvider.SubProviderEntry(mLootTableBlockProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
 
-		generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput, lookupProvider));
+		generator.addProvider(event.includeServer(), new mRecipeProvider(packOutput, lookupProvider));
 		generator.addProvider(event.includeServer(), new MillingRecipes(packOutput, lookupProvider));
 		generator.addProvider(event.includeServer(), new CrushingRecipes(packOutput, lookupProvider));
 
@@ -42,7 +45,7 @@ public class DataGenerators {
 
 		generator.addProvider(event.includeServer(), new ModDataMapProvider(packOutput, lookupProvider));
 
-		generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
-		generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, existingFileHelper));
+		generator.addProvider(event.includeClient(), new mBlockStateProvider(packOutput, existingFileHelper));
+		generator.addProvider(event.includeClient(), new mItemModelProvider(packOutput, existingFileHelper));
 	}
 }

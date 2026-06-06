@@ -1,4 +1,4 @@
-package in.hridaykh.moregenerators.datagen;
+package in.hridaykh.moregenerators.datagen.extra;
 
 import in.hridaykh.moregenerators.MoreGenerators;
 import net.minecraft.core.HolderLookup;

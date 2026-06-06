@@ -9,9 +9,9 @@ import net.minecraft.world.item.Items;
 
 import java.util.concurrent.CompletableFuture;
 
-@SuppressWarnings("unused")
 public class MillingRecipes extends MillingRecipeGen {
 	GeneratedRecipe PHOSPHORUS = create(() -> Items.BONE_BLOCK, b -> b.duration(100).output(ModItems.PHOSPHORUS.get(), 18));
+	GeneratedRecipe QUARTZ = create(() -> Items.DIORITE, b -> b.duration(100).output(Items.QUARTZ, 2));
 
 	public MillingRecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
 		super(output, registries, MoreGenerators.MOD_ID);

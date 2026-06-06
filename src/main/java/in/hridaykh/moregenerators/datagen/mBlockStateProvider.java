@@ -4,23 +4,23 @@ import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.collections.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-public class ModBlockStateProvider extends BlockStateProvider {
+public class mBlockStateProvider extends BlockStateProvider {
 
-	public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+	public mBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
 		super(output, MoreGenerators.MOD_ID, exFileHelper);
 	}
 
 	@Override
 	protected void registerStatesAndModels() {
-		solarPanelBlock(ModBlocks.SOLAR_PANEL);
+		customModel(ModBlocks.SOLAR_PANEL);
+		customModel(ModBlocks.BUFF_POTATO_BATTERY);
 	}
 
-	private void solarPanelBlock(DeferredBlock<?> block) {
-		ModelFile.ExistingModelFile solarPanelModel = models().getExistingFile(modLoc("block/" + block.getId().getPath()));
-		simpleBlock(block.get(), solarPanelModel);
+	private void customModel(DeferredBlock<?> block) {
+		var model = models().getExistingFile(modLoc("block/" + block.getId().getPath()));
+		simpleBlock(block.get(), model);
 	}
 }

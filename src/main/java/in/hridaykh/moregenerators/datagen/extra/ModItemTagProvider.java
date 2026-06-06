@@ -1,12 +1,10 @@
-package in.hridaykh.moregenerators.datagen;
+package in.hridaykh.moregenerators.datagen.extra;
 
 import java.util.concurrent.CompletableFuture;
 
 import org.jetbrains.annotations.Nullable;
 
 import in.hridaykh.moregenerators.MoreGenerators;
-import in.hridaykh.moregenerators.collections.ModItems;
-import in.hridaykh.moregenerators.collections.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;

@@ -26,7 +26,8 @@ public class ResistorBE extends ElectricBlockEntity {
 	}
 
 	protected ResistorValBehaviour makeScroll() {
-		var a = new ResistorValBehaviour(Lang.translateDirect("devices.resistor.resistance"), this, new ResistorBoxTransform(), 1, resistanceMultiplier * 15);
+		var a = new ResistorValBehaviour(Lang.translateDirect("devices.resistor.resistance"), this, new ResistorBoxTransform(), 1,
+				resistanceMultiplier * 15);
 
 		return a;
 	}
@@ -39,9 +40,11 @@ public class ResistorBE extends ElectricBlockEntity {
 		this.value.withResistanceCallback(R -> {
 			double target = (double) R;
 			// CHANGE: Clamp minimum to 1.0 instead of 0.0001
-			if (target < 1.0 || !Double.isFinite(target)) target = 1.0;
+			if (target < 1.0 || !Double.isFinite(target))
+				target = 1.0;
 
-			if (this.wire != null) this.wire.setResistance(target);
+			if (this.wire != null)
+				this.wire.setResistance(target);
 
 			this.notifyUpdate();
 		});
@@ -55,9 +58,11 @@ public class ResistorBE extends ElectricBlockEntity {
 		this.wire = builder.connect(0.1F, builder.terminalNode(0), builder.terminalNode(1));
 
 		double targetResistance = this.loadedResistance;
-		if (this.value != null) targetResistance = this.value.getResistance();
+		if (this.value != null)
+			targetResistance = this.value.getResistance();
 
-		if (targetResistance <= 0.0) targetResistance = 1.0;
+		if (targetResistance <= 0.0)
+			targetResistance = 1.0;
 
 		this.wire.setResistance(targetResistance);
 	}
@@ -66,8 +71,10 @@ public class ResistorBE extends ElectricBlockEntity {
 	protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
 		super.read(tag, registries, clientPacket);
 		// CHANGE: Read fallback to 1.0 instead of 0.0001f
-		if (tag.contains("ScrollValue")) this.loadedResistance = Math.max(tag.getDouble("ScrollValue"), 1.0);
-		else this.loadedResistance = 1.0;
+		if (tag.contains("ScrollValue"))
+			this.loadedResistance = Math.max(tag.getDouble("ScrollValue"), 1.0);
+		else
+			this.loadedResistance = 1.0;
 	}
 
 	@Override
@@ -78,12 +85,14 @@ public class ResistorBE extends ElectricBlockEntity {
 	}
 
 	public void electricalTick() {
-		if (this.wire != null) this.applyPower(this.wire);
+		if (this.wire != null)
+			this.applyPower(this.wire);
 	}
 
 	public void tick() {
 		super.tick();
-		if (this.level == null || this.level.isClientSide) return;
+		if (this.level == null || this.level.isClientSide)
+			return;
 
 		int targetLight = Math.clamp(this.wire == null ? 0 : (int) this.wire.power() / powerMultiplier, 0, 15);
 		boolean shouldBeLit = targetLight > 0;
@@ -91,10 +100,12 @@ public class ResistorBE extends ElectricBlockEntity {
 		BlockState currentState = this.getBlockState();
 
 		if (currentState.hasProperty(Resistor.LIGHT_LEVEL) && currentState.getValue(Resistor.LIGHT_LEVEL) != targetLight)
-			this.level.setBlock(this.worldPosition, currentState.setValue(Resistor.LIGHT_LEVEL, targetLight), 3);
+			if (this.level != null)
+				this.level.setBlock(this.worldPosition, currentState.setValue(Resistor.LIGHT_LEVEL, targetLight), 3);
 
 		if (currentState.hasProperty(Resistor.LIT) && currentState.getValue(Resistor.LIT) != shouldBeLit)
-			this.level.setBlock(this.worldPosition, currentState.setValue(Resistor.LIT, shouldBeLit), 3);
+			if (this.level != null)
+				this.level.setBlock(this.worldPosition, currentState.setValue(Resistor.LIT, shouldBeLit), 3);
 
 	}
 }

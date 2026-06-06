@@ -1,4 +1,4 @@
-package in.hridaykh.moregenerators.datagen;
+package in.hridaykh.moregenerators.datagen.extra;
 
 import in.hridaykh.moregenerators.collections.ModItems;
 import net.minecraft.core.HolderLookup;
@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModDataMapProvider extends DataMapProvider {
 
-	protected ModDataMapProvider(PackOutput packOutput, CompletableFuture<Provider> lookupProvider) {
+	public ModDataMapProvider(PackOutput packOutput, CompletableFuture<Provider> lookupProvider) {
 		super(packOutput, lookupProvider);
 	}
 

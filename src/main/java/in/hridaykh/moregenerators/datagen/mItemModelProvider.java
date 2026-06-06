@@ -4,12 +4,11 @@ import in.hridaykh.moregenerators.MoreGenerators;
 import in.hridaykh.moregenerators.collections.ModBlocks;
 import in.hridaykh.moregenerators.collections.ModItems;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-public class ModItemModelProvider extends ItemModelProvider {
+public class mItemModelProvider extends net.neoforged.neoforge.client.model.generators.ItemModelProvider {
 
-	public ModItemModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+	public mItemModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {
 		super(output, MoreGenerators.MOD_ID, exFileHelper);
 	}
 
