@@ -1,52 +1,76 @@
 package in.hridaykh.moregenerators.content.solar;
 
+import java.util.List;
+
+import org.patryk3211.powergrid.electricity.base.ElectricBlock;
+import org.patryk3211.powergrid.electricity.base.IDecoratedTerminal;
+import org.patryk3211.powergrid.electricity.base.TerminalBoundingBox;
+import org.patryk3211.powergrid.electricity.base.terminals.BlockStateTerminalCollection;
+import org.patryk3211.powergrid.electricity.info.IHaveElectricProperties;
+import org.patryk3211.powergrid.utility.Lang;
+import org.patryk3211.powergrid.utility.Unit;
+
 import com.simibubi.create.foundation.block.IBE;
 
 import in.hridaykh.moregenerators.ModLang;
 import in.hridaykh.moregenerators.collections.ModBlockEntities;
+import net.createmod.catnip.math.VoxelShaper;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.List;
-
-import org.patryk3211.powergrid.electricity.base.HorizontalAxisElectricBlock;
-import org.patryk3211.powergrid.electricity.base.IDecoratedTerminal;
-import org.patryk3211.powergrid.electricity.base.TerminalBoundingBox;
-import org.patryk3211.powergrid.electricity.info.IHaveElectricProperties;
-import org.patryk3211.powergrid.utility.Lang;
-import org.patryk3211.powergrid.utility.Unit;
-
 @MethodsReturnNonnullByDefault
-public class SolarBlock extends HorizontalAxisElectricBlock implements IBE<SolarBE>, IHaveElectricProperties {
-	public static final Property<Direction.Axis> HORIZONTAL_AXIS;
-	private static final VoxelShape SHAPE;
+public class SolarBlock extends ElectricBlock implements IBE<SolarBE>, IHaveElectricProperties {
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	private static final VoxelShape SHAPE = Shapes.or(box(0.0F, 0.0F, 0.0F, 16.0F, 1.0F, 16.0F), box(1.0F, 1.0F, 1.0F, 15.0F, 2.0F, 15.0F));
 	private static final TerminalBoundingBox[] TERMINALS;
 
 	static {
-		HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
-
-		// Centered on the 16x16 grid (0.0 to 16.0)
-		SHAPE = Shapes.or(box(0.0F, 0.0F, 0.0F, 16.0F, 1.0F, 16.0F), box(1.0F, 1.0F, 1.0F, 15.0F, 2.0F, 15.0F));
-
-		// Terminals placed on the Z-axis faces (North/South) relative to the 16x16 grid
-		var t1 = new TerminalBoundingBox(IDecoratedTerminal.POSITIVE, 7.0F, 1.0F, 0.0F, 9.0F, 2.0F, 1.0F).withColor(16726843);
-		var t2 = new TerminalBoundingBox(IDecoratedTerminal.NEGATIVE, 7.0F, 1.0F, 15.0F, 9.0F, 2.0F, 16.0F).withColor(3899647);
-
+		var t1 = new TerminalBoundingBox(IDecoratedTerminal.POSITIVE, 10.0F, 1.0F, 0.0F, 12.0F, 2.0F, 1.0F).withColor(16726843);
+		var t2 = new TerminalBoundingBox(IDecoratedTerminal.NEGATIVE, 4.0F, 1.0F, 15.0F, 6.0F, 2.0F, 16.0F).withColor(3899647);
 		TERMINALS = new TerminalBoundingBox[] { t1, t2 };
 	}
 
 	public SolarBlock(BlockBehaviour.Properties settings) {
 		super(settings);
-		this.setTerminalCollection(horizontalZTerminals(this, TERMINALS, SHAPE));
+		VoxelShaper shaper = VoxelShaper.forHorizontal(SHAPE, Direction.NORTH);
+		this.setTerminalCollection(BlockStateTerminalCollection.builder(this).forAllStates((state) -> BlockStateTerminalCollection.each(TERMINALS, (terminal) -> {
+			int angle = switch (state.getValue(FACING)) {
+			case NORTH -> 90;
+			case SOUTH -> 270;
+			case EAST -> 180;
+			case WEST -> 0;
+			default -> 0;
+			};
+			return terminal.rotateAroundY(angle);
+		})).withShapeMapper((state) -> shaper.get(state.getValue(FACING))).build());
+	}
+
+	@Override
+	public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		builder.add(FACING);
+	}
+
+	@SuppressWarnings("null")
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		Direction facing = ctx.getHorizontalDirection().getOpposite();
+		if (ctx.getPlayer() != null && ctx.getPlayer().isShiftKeyDown())
+			facing = facing.getOpposite();
+		return this.defaultBlockState().setValue(FACING, facing);
 	}
 
 	public Class<SolarBE> getBlockEntityClass() {
@@ -63,4 +87,4 @@ public class SolarBlock extends HorizontalAxisElectricBlock implements IBE<Solar
 		ModLang.builder().add(Component.nullToEmpty("Internal Resistance: ")).add(Lang.number(SolarBE.INTERNAL_RESISTANCE)).add(Unit.RESISTANCE.get())
 				.addTo(tooltip);
 	}
-}	
+}

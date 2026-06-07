@@ -10,3 +10,17 @@ util lib to write ModLang appendProperties easily
 
 glass pane + phosphorus + silicon + copper nugget -> solar cell
 4x solar cell -> solar panel
+
+
+
+
+right click to clean panels
+panel multiblocks for no wiring hell (config dir for parrallel and series)
+changing resistance
+lower resistance overall
+solar cells om circuits
+battery multiblocks
+make the exisint lead acid usable
+angled solar panels that generate based on their rotation
+so if theyre facing west then their peak is a lot earlier
+same as flat if facing south/north
