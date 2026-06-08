@@ -1,7 +1,7 @@
 package in.hridaykh.moregenerators.collections;
 
 import in.hridaykh.moregenerators.MoreGenerators;
-import in.hridaykh.moregenerators.content.LedLightBulb;
+import in.hridaykh.moregenerators.content.led.LedLightBulb;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;

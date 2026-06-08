@@ -1,4 +1,4 @@
-package in.hridaykh.moregenerators.content;
+package in.hridaykh.moregenerators.content.led;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -16,19 +16,18 @@ public class LedLightBulbClientTooltip {
 
 	public static void appendTooltip(LedLightBulb bulb, ItemStack stack, List<Component> tooltipComponents) {
 		final boolean holdingShift = Screen.hasShiftDown();
-		if (holdingShift) {
+		if (holdingShift)
 			bulb.appendProperties(stack, Minecraft.getInstance().player, tooltipComponents);
-		} else {
+		else
 			tooltipComponents.add(propertiesHeader(false));
-		}
+
 	}
 
 	private static Component propertiesHeader(boolean holdingShift) {
 		final String[] headerParts = Component.translatable("powergrid.tooltip.holdForDescription", "$").getString().split("\\$");
-		final MutableComponent keyComponent = Component.translatable("create.tooltip.keyShift").copy().withStyle(holdingShift ? ChatFormatting.WHITE : ChatFormatting.GRAY);
-		return Component.empty()
-				.append(Component.literal(headerParts[0]).withStyle(ChatFormatting.DARK_GRAY))
-				.append(keyComponent)
+		final MutableComponent keyComponent = Component.translatable("create.tooltip.keyShift").copy()
+				.withStyle(holdingShift ? ChatFormatting.WHITE : ChatFormatting.GRAY);
+		return Component.empty().append(Component.literal(headerParts[0]).withStyle(ChatFormatting.DARK_GRAY)).append(keyComponent)
 				.append(Component.literal(headerParts[1]).withStyle(ChatFormatting.DARK_GRAY));
 	}
 }

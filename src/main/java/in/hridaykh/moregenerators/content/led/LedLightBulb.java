@@ -1,4 +1,4 @@
-package in.hridaykh.moregenerators.content;
+package in.hridaykh.moregenerators.content.led;
 
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import in.hridaykh.moregenerators.collections.ModPartialModels;
@@ -29,17 +29,17 @@ public class LedLightBulb extends LightBulb {
 		super(settings);
 		this.canBeDyed = true;
 		this.modelSupplier = () -> state -> switch (state) {
-			case OFF -> ModPartialModels.MODEL_OFF;
-			case LOW_POWER, ON -> ModPartialModels.MODEL_ON;
-			case BROKEN -> ModPartialModels.MODEL_BROKEN;
-			case LIGHT -> ModPartialModels.MODEL_LIGHT;
+		case OFF -> ModPartialModels.MODEL_OFF;
+		case LOW_POWER, ON -> ModPartialModels.MODEL_ON;
+		case BROKEN -> ModPartialModels.MODEL_BROKEN;
+		case LIGHT -> ModPartialModels.MODEL_LIGHT;
 		};
 		this.dyedModelSupplier = () -> state -> switch (state) {
-			case OFF -> ModPartialModels.DYED_MODEL_OFF;
-			case LOW_POWER, ON -> ModPartialModels.DYED_MODEL_ON;
-			case BROKEN -> ModPartialModels.DYED_MODEL_BROKEN;
-			case LIGHT -> ModPartialModels.DYED_MODEL_LIGHT;
-			case BULB -> ModPartialModels.DYED_MODEL_BULB;
+		case OFF -> ModPartialModels.DYED_MODEL_OFF;
+		case LOW_POWER, ON -> ModPartialModels.DYED_MODEL_ON;
+		case BROKEN -> ModPartialModels.DYED_MODEL_BROKEN;
+		case LIGHT -> ModPartialModels.DYED_MODEL_LIGHT;
+		case BULB -> ModPartialModels.DYED_MODEL_BULB;
 		};
 
 		applyRatedValues(RATED_POWER_WATTS, RATED_VOLTAGE_VOLTS, TEMPERATURE_AT_RATED_RESISTANCE, THERMAL_MASS);
@@ -52,9 +52,8 @@ public class LedLightBulb extends LightBulb {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
-		if (FMLEnvironment.dist.isClient()) {
+		if (FMLEnvironment.dist.isClient())
 			LedLightBulbClientTooltip.appendTooltip(this, stack, tooltipComponents);
-		}
 	}
 
 	private void applyRatedValues(float ratedPower, float ratedVoltage, float maxTemperature, float thermalMass) {
@@ -67,7 +66,9 @@ public class LedLightBulb extends LightBulb {
 	}
 
 	public static class State extends LightBulb.SimpleState {
-		public <T extends Item & ILightBulb> State(T bulb, LightFixtureBlockEntity fixture, Supplier<Function<LightBulb.State, PartialModel>> modelProviderSupplier, Supplier<Function<DyedState, PartialModel>> dyedModelProviderSupplier) {
+		public <T extends Item & ILightBulb> State(T bulb, LightFixtureBlockEntity fixture,
+				Supplier<Function<LightBulb.State, PartialModel>> modelProviderSupplier,
+				Supplier<Function<DyedState, PartialModel>> dyedModelProviderSupplier) {
 			super(bulb, fixture, modelProviderSupplier, dyedModelProviderSupplier);
 		}
 

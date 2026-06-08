@@ -1,25 +1,31 @@
+# More Generators
+> Adding More Power Sources to Create: Power Grid
 
-Installation information
-=======
+## Modrinth: [https://modrinth.com/mod/more-generators](https://modrinth.com/mod/more-generators)
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+## Additions
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+- LED Filament: Used to make the LED Bulb
+- LED Bulb: Efficient 3w 120V bulb
+- Light Resistor: Upto 150 ohms, 150w resistor that emits light; 1 level for every 10w of power
+- Buff Potato Battery: potato battery, but buff ; can power lv bulb for 1 min
+- Solar Panel: 200w 1ohm solar panel whose output changes over the day, modeled after the daylight detector
+- Phosphorus: a new element!
+- Silicon: another new element!
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+## Recipes
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+### Crafting Table Recipes
+- LED Filament (x2): 1x Phosphorus + 1x Silicon (Shapeless)
+- LED Bulb (x1): 1x Glass Pane + 1x LED Filament + 1x Copper Sheet (Shaped)
+- Copper Wire (x1): 2x Copper Nuggets (Shaped)
+- Light Resistor (x1): 1x Resistor + 1x Torch (Shapeless)
+- Buff Potato Battery (x1): 1x Copper Sheet + 1x Zinc Sheet + 1x Baked Potato (Shapeless)
+- Solar Panel (x1): 1x Silicon + 1x Phosphorus + 1x Glass Pane + 1x Copper Nugget (Shapeless)
+- 
+### Create Crushing & Milling
+- Phosphorus (x18): 1x Bone Block
+- Quartz (x2): 1x Diorite
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+### Smelting & Blasting Recipes
+- Silicon (x1): 1x Nether Quartz (Smelter or Blast Furnace)
